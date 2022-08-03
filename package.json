@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/mike-shields-dev/music_library/issues"
   },
-  "homepage": "https://github.com/mike-shields-dev/music_library#readme"
+  "homepage": "https://github.com/mike-shields-dev/music_library#readme",
+  "devDependencies": {
+    "eslint": "^8.21.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
 }
