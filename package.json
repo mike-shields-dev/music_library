@@ -4,7 +4,7 @@
   "description": "Manchester Codes > Backend > Music Library Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
   "repository": {
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mike-shields-dev/music_library#readme",
   "devDependencies": {
+    "dotenv": "^16.0.1",
     "eslint": "^8.21.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
