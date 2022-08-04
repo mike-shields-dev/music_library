@@ -73,3 +73,23 @@ exports.updateOne = async (req, res) => {
     res.sendStatus(500).json(err)
   }
 }
+
+exports.deleteOne = async (req, res) => {
+  const db = await getDb()
+  const { artistId } = req.params
+  try {
+    const [[artist]] = await db.query(
+      `
+      SELECT * FROM Artist WHERE id = ?
+      `,
+      [artistId]
+    )
+    if (!artist) {
+      res.sendStatus(404)
+    }
+    await db.query(`DELETE FROM Artist WHERE id = ?`, [artistId])
+    res.sendStatus(200)
+  } catch (err) {
+    res.sendStatus(500).json(err)
+  }
+}

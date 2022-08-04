@@ -7,5 +7,6 @@ router.post("/", artistController.create)
 router.get("/", artistController.read)
 router.get("/:artistId", artistController.readOne)
 router.patch("/:artistId", artistController.updateOne)
+router.delete("/:artistId", artistController.deleteOne)
 
 module.exports = router
