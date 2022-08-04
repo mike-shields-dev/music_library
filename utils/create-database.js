@@ -19,7 +19,7 @@ require("dotenv").config({
 // destructure environment variables from process.env
 const { DB_PASSWORD, DB_NAME, DB_USER, DB_HOST, DB_PORT } = process.env
 
-// This asyncronous function will run before app
+// This asynchronous function will run before app
 const setUpDatabase = async () => {
   try {
     // connect to the database
