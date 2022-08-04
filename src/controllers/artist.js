@@ -37,8 +37,6 @@ exports.readOne = async (req, res) => {
     const [[artist]] = await db.query("SELECT * FROM Artist WHERE id = ?", [
       artistId,
     ])
-
-    console.log({ artist })
     if (!artist) {
       res.sendStatus(404)
     }
