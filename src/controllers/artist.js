@@ -53,7 +53,6 @@ exports.updateOne = async (req, res) => {
   const db = await getDb()
   const { artistId } = req.params
   const { name, genre } = req.body
-  console.log({ artistId, name, genre })
 
   try {
     const [[artist]] = await db.query(
@@ -65,22 +64,11 @@ exports.updateOne = async (req, res) => {
     if (!artist) {
       res.sendStatus(404)
     }
-    if (name) {
-      await db.query(
-        `
-        UPDATE Artist SET name = ? WHERE id = ?
-        `,
-        [name, artistId]
-      )
-    }
-    if (genre) {
-      await db.query(
-        `
-        UPDATE Artist SET genre = ? WHERE id = ?
-        `,
-        [genre, artistId]
-      )
-    }
+    await db.query(`UPDATE Artist SET ? WHERE id = ?`, [
+      { name, genre },
+      artistId,
+    ])
+    res.sendStatus(200)
   } catch (err) {
     res.sendStatus(500).json(err)
   }
