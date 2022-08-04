@@ -29,3 +29,24 @@ exports.read = async (req, res) => {
     await db.end()
   }
 }
+
+exports.readOne = async (req, res) => {
+  const db = await getDb()
+  const { artistId } = req.params
+  try {
+    const [[artist]] = await db.query("SELECT * FROM Artist WHERE id = ?", [
+      artistId,
+    ])
+
+    console.log({ artist })
+    if (!artist) {
+      res.sendStatus(404)
+    }
+    res.status(200).json(artist)
+  } catch (err) {
+    console.log(err)
+    res.sendStatus(500).json(err)
+  } finally {
+    await db.end()
+  }
+}
