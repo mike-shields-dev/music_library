@@ -11,6 +11,19 @@ exports.create = async (req, res) => {
     res.sendStatus(201)
   } catch (err) {
     console.log(err)
+    res.status(500).json(err)
+  } finally {
+    await db.end()
+  }
+}
+
+exports.read = async (req, res) => {
+  const db = await getDb()
+  try {
+    const [artists] = await db.query("SELECT * FROM Artist")
+    res.status(200).json(artists)
+  } catch (err) {
+    console.log(err)
     res.sendStatus(500).json(err)
   } finally {
     await db.end()
