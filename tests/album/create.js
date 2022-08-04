@@ -20,6 +20,7 @@ describe("create album", () => {
         const res = await request(app).post("/album").send({
           name: "Test Album",
           artistId: 1,
+          year: 2022,
         })
         expect(res.status).to.equal(201)
 
