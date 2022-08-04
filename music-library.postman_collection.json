@@ -23,6 +23,33 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/artist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"Tipper\",\r\n   \"genre\": \"IDM\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/artist",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
