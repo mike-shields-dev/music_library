@@ -37,8 +37,6 @@ exports.readOne = async (req, res) => {
     const [[artist]] = await db.query("SELECT * FROM Artist WHERE id = ?", [
       artistId,
     ])
-
-    console.log({ artist })
     if (!artist) {
       res.sendStatus(404)
     }
@@ -48,5 +46,50 @@ exports.readOne = async (req, res) => {
     res.sendStatus(500).json(err)
   } finally {
     await db.end()
+  }
+}
+
+exports.updateOne = async (req, res) => {
+  const db = await getDb()
+  const { artistId } = req.params
+  const { name, genre } = req.body
+
+  try {
+    const [[artist]] = await db.query(
+      `
+      SELECT * FROM Artist WHERE id = ?
+      `,
+      [artistId]
+    )
+    if (!artist) {
+      res.sendStatus(404)
+    }
+    await db.query(`UPDATE Artist SET ? WHERE id = ?`, [
+      { name, genre },
+      artistId,
+    ])
+    res.sendStatus(200)
+  } catch (err) {
+    res.sendStatus(500).json(err)
+  }
+}
+
+exports.deleteOne = async (req, res) => {
+  const db = await getDb()
+  const { artistId } = req.params
+  try {
+    const [[artist]] = await db.query(
+      `
+      SELECT * FROM Artist WHERE id = ?
+      `,
+      [artistId]
+    )
+    if (!artist) {
+      res.sendStatus(404)
+    }
+    await db.query(`DELETE FROM Artist WHERE id = ?`, [artistId])
+    res.sendStatus(200)
+  } catch (err) {
+    res.sendStatus(500).json(err)
   }
 }
