@@ -6,12 +6,12 @@ exports.create = async (req, res) => {
   const db = await getDb()
 
   try {
-    const [[existingArtist]] = await db.query(
+    const [[dbArtist]] = await db.query(
       `SELECT * FROM Artist WHERE id = ?`,
       [artistId]
     )
 
-    if (!existingArtist) return res.sendStatus(404)
+    if (!dbArtist) return res.sendStatus(404)
 
     await db.query(`INSERT INTO Album SET ? `, {
       title,
