@@ -3,25 +3,24 @@ const request = require("supertest")
 const getDb = require("../../src/services/db")
 const app = require("../../src/app")
 
+const testArtists = [
+  { name: "Tame Impala", genre: "Rock" },
+  { name: "Kylie Minogue", genre: "Pop" },
+  { name: "Dave Brubeck", genre: "Jazz" },
+]
+
 describe("update artist", () => {
   let db
   let artists
   beforeEach(async () => {
     db = await getDb()
-    await Promise.all([
-      db.query("INSERT INTO Artist (name, genre) VALUES(?, ?)", [
-        "Tame Impala",
-        "rock",
-      ]),
-      db.query("INSERT INTO Artist (name, genre) VALUES(?, ?)", [
-        "Kylie Minogue",
-        "pop",
-      ]),
-      db.query("INSERT INTO Artist (name, genre) VALUES(?, ?)", [
-        "Dave Brubeck",
-        "jazz",
-      ]),
-    ])
+    
+    await Promise.all(
+      testArtists.map(
+        async (testArtist) =>
+          await db.query("INSERT INTO Artist SET ?", testArtist)
+      )
+    )
     ;[artists] = await db.query("SELECT * FROM Artist")
   })
 
