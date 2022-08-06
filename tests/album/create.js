@@ -5,16 +5,16 @@ const app = require("../../src/app")
 
 describe("create album", () => {
   let db
-  let existingArtist
+  let dbArtist
 
   beforeEach(async () => {
     db = await getDb()
-    
+
     await db.query("INSERT INTO Artist SET ?", {
       name: "Tipper",
       genre: "IDM",
     })
-    ;[[existingArtist]] = await db.query(`SELECT * FROM Artist`)
+    ;[[dbArtist]] = await db.query(`SELECT * FROM Artist`)
   })
 
   afterEach(async () => {
@@ -34,21 +34,22 @@ describe("create album", () => {
       })
 
       it("creates an album in the database", async () => {
-        const album = {
+        const testAlbum = {
           title: "Insolito",
           year: 2022,
         }
 
         const res = await request(app)
-          .post(`/artist/${existingArtist.id}/album`)
-          .send(album)
+          .post(`/artist/${dbArtist.id}/album`)
+          .send(testAlbum)
 
         expect(res.status).to.equal(201)
 
-        const [[albumEntries]] = await db.query("SELECT * FROM Album")
+        const [[dBAlbum]] = await db.query("SELECT * FROM Album")
 
-        expect(albumEntries.title).to.equal(album.title)
-        expect(albumEntries.year).to.equal(album.year)
+        expect(dBAlbum.title).to.equal(testAlbum.title)
+        expect(dBAlbum.year).to.equal(testAlbum.year)
+        expect(dBAlbum.artistId).to.equal(dbArtist.id)
       })
     })
   })
