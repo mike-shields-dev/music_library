@@ -3,27 +3,24 @@ const request = require("supertest")
 const getDb = require("../../src/services/db")
 const app = require("../../src/app")
 
+const testArtists = [
+  { name: "Tame Impala", genre: "Rock" },
+  { name: "Kylie Minogue", genre: "Pop" },
+  { name: "Dave Brubeck", genre: "Jazz" },
+]
+
 describe("delete artist", () => {
   let db
-  let artists
+  let storedArtists
   beforeEach(async () => {
     db = await getDb()
-    await Promise.all([
-      db.query("INSERT INTO Artist (name, genre) VALUES(?, ?)", [
-        "Tame Impala",
-        "rock",
-      ]),
-      db.query("INSERT INTO Artist (name, genre) VALUES(?, ?)", [
-        "Kylie Minogue",
-        "pop",
-      ]),
-      db.query("INSERT INTO Artist (name, genre) VALUES(?, ?)", [
-        "Dave Brubeck",
-        "jazz",
-      ]),
-    ])
-
-    ;[artists] = await db.query("SELECT * from Artist")
+    await Promise.all(
+      testArtists.map(
+        async (testArtist) =>
+          await db.query("INSERT INTO Artist SET ?", testArtist)
+      )
+    )
+    ;[storedArtists] = await db.query("SELECT * from Artist")
   })
 
   afterEach(async () => {
@@ -34,17 +31,17 @@ describe("delete artist", () => {
   describe("/artist/:artistId", () => {
     describe("DELETE", () => {
       it("deletes a single artist with the correct id", async () => {
-        const artist = artists[0]
-        const res = await request(app).delete(`/artist/${artist.id}`).send()
+        const targetArtist = storedArtists[0]
+        const res = await request(app).delete(`/artist/${targetArtist.id}`).send()
 
         expect(res.status).to.equal(200)
 
-        const [[deletedArtistRecord]] = await db.query(
+        const [[isFoundDeletedArtist]] = await db.query(
           "SELECT * FROM Artist WHERE id = ?",
-          [artist.id]
+          [targetArtist.id]
         )
 
-        expect(!!deletedArtistRecord).to.be.false
+        expect(!!isFoundDeletedArtist).to.be.false
       })
 
       it("returns a 404 if the artist is not in the database", async () => {
