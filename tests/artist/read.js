@@ -3,27 +3,24 @@ const request = require("supertest")
 const getDb = require("../../src/services/db")
 const app = require("../../src/app")
 
+const testArtists = [
+  { name: "Tame Impala", genre: "Rock" },
+  { name: "Kylie Minogue", genre: "Pop" },
+  { name: "Dave Brubeck", genre: "Jazz" },
+]
+
 describe("read artist", () => {
   let db
-  let artists
+  let storedArtists
 
   beforeEach(async () => {
     db = await getDb()
-    await Promise.all([
-      db.query("INSERT INTO Artist (name, genre) VALUES(?, ?)", [
-        "Tame Impala",
-        "rock",
-      ]),
-      db.query("INSERT INTO Artist (name, genre) VALUES(?, ?)", [
-        "Kylie Minogue",
-        "pop",
-      ]),
-      db.query("INSERT INTO Artist (name, genre) VALUES(?, ?)", [
-        "Dave Brubeck",
-        "jazz",
-      ]),
-    ])
-    ;[artists] = await db.query("SELECT * from Artist")
+    await Promise.all(
+      testArtists.map(
+        async (testArtist) => await db.query("INSERT INTO Artist SET ?", testArtist)
+      )
+    )
+    ;[storedArtists] = await db.query("SELECT * from Artist")
   })
 
   afterEach(async () => {
@@ -37,10 +34,10 @@ describe("read artist", () => {
         const res = await request(app).get("/artist").send()
 
         expect(res.status).to.equal(200)
-        expect(res.body.length).to.equal(3)
+        expect(res.body.length).to.equal(testArtists.length)
 
         res.body.forEach((artistRecord) => {
-          const expected = artists.find((a) => a.id === artistRecord.id)
+          const expected = storedArtists.find((a) => a.id === artistRecord.id)
 
           expect(artistRecord).to.deep.equal(expected)
         })
@@ -51,7 +48,7 @@ describe("read artist", () => {
   describe("/artist/:artistId", () => {
     describe("GET", () => {
       it("returns a single artist with the correct id", async () => {
-        const expected = artists[0]
+        const expected = storedArtists[0]
         const res = await request(app).get(`/artist/${expected.id}`).send()
 
         expect(res.status).to.equal(200)

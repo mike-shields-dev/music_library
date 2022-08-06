@@ -37,7 +37,6 @@ describe("create album", () => {
         const album = {
           title: "Insolito",
           year: 2022,
-          artistId: existingArtist.id,
         }
 
         const res = await request(app)
