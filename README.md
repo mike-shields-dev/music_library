@@ -10,12 +10,12 @@ The project explores:
 * Eslint installation & configuration
 * Prettier configuration
 * Installation of production dependencies:
-  * [ExpressJS]("https://www.npmjs.com/package/express")
-  * [mySql2]("https://www.npmjs.com/package/mysql2") 
+  * [ExpressJS](https://www.npmjs.com/package/express)
+  * [mySql2](https://www.npmjs.com/package/mysql2) 
 * Installation of development dependencies
-  * [Nodemon]("https://www.npmjs.com/package/nodemon")
-  * [Supertest]("https://www.npmjs.com/package/supertest")
-  * [Mocha]("https://www.npmjs.com/package/mocha") 
+  * [Nodemon](https://www.npmjs.com/package/nodemon)
+  * [Supertest](https://www.npmjs.com/package/supertest)
+  * [Mocha](https://www.npmjs.com/package/mocha) 
   * Chai
   * Eslint (with custom configuration)
 * Node scripting
