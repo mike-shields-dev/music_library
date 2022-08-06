@@ -11,5 +11,5 @@ module.exports = async () => {
     database: DB_NAME,
   })
 
-  return connection
+  return connection;
 }

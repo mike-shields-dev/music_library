@@ -1,55 +1,47 @@
 {
-	"info": {
-		"_postman_id": "34629981-4abc-44c3-bb61-441e72dc2e95",
-		"name": "music-library",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "13647537"
-	},
-	"item": [
-		{
-			"name": "GET /",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:4000/",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/artist",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n   \"name\": \"Tipper\",\r\n   \"genre\": \"IDM\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:4000/artist",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"artist"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "34629981-4abc-44c3-bb61-441e72dc2e95",
+    "name": "music-library",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "13647537"
+  },
+  "item": [
+    {
+      "name": "GET /",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:4000/",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": [""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/artist",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n   \"name\": \"Tipper\",\r\n   \"genre\": \"IDM\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:4000/artist",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["artist"]
+        }
+      },
+      "response": []
+    }
+  ]
 }
