@@ -6,9 +6,6 @@ The project is an opportunity to build upon topics covered in previous modules a
 
 The project explores: 
 ### Node Project Setup and Configuration
-
-* Eslint installation & configuration
-* Prettier configuration
 * Installation of production dependencies:
   * [ExpressJS](https://www.npmjs.com/package/express)
   * [mySql2](https://www.npmjs.com/package/mysql2) 
@@ -17,12 +14,14 @@ The project explores:
   * [Supertest](https://www.npmjs.com/package/supertest)
   * [Mocha](https://www.npmjs.com/package/mocha) 
   * [Chai](https://www.npmjs.com/package/chai)
-  * [Eslint](https://www.npmjs.com/package/eslint) (with configuration)
-* Node scripting
+  * [Eslint](https://www.npmjs.com/package/eslint)
+* [Node Scripts](https://docs.npmjs.com/cli/v8/using-npm/scripts)
+* Working with and Configuring Environment Variables
+* Hosting a local mySQL database using a Docker container
 
 ### API Implementation & Development
 
 * HTTP methods: POST, GET, PATCH and DELETE
 * CRUD operations: create, read, update, delete
-* Integration TDD
-* End to end testing with Postman 
+* Integration testing with Test driven development
+* End-to-end testing with Postman
