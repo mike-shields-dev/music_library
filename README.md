@@ -16,8 +16,8 @@ The project explores:
   * [Nodemon](https://www.npmjs.com/package/nodemon)
   * [Supertest](https://www.npmjs.com/package/supertest)
   * [Mocha](https://www.npmjs.com/package/mocha) 
-  * Chai
-  * Eslint (with custom configuration)
+  * [Chai](https://www.npmjs.com/package/chai)
+  * [Eslint](https://www.npmjs.com/package/eslint) (with configuration)
 * Node scripting
 
 ### API Implementation & Development
