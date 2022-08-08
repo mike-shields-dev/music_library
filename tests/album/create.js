@@ -43,10 +43,9 @@ describe("create album", () => {
           .post(`/artist/${dbArtist.id}/album`)
           .send(testAlbum);
 
-        expect(res.status).to.equal(201);
-
         const [[dBAlbum]] = await db.query("SELECT * FROM Album");
-
+        
+        expect(res.status).to.equal(201);
         expect(dBAlbum.title).to.equal(testAlbum.title);
         expect(dBAlbum.year).to.equal(testAlbum.year);
         expect(dBAlbum.artistId).to.equal(dbArtist.id);
