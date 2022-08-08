@@ -51,9 +51,9 @@ describe("read artist", () => {
 
         const res = await request(app).get(`/artist/${targetArtist.id}`).send();
 
-        expect(res.status).to.equal(200);
-
         const responseArtist = res.body;
+        
+        expect(res.status).to.equal(200);
 
         expect(responseArtist).to.deep.equal(targetArtist);
       });
