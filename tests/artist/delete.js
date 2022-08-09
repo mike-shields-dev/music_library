@@ -31,12 +31,12 @@ describe("delete artist", () => {
           .delete(`/artist/${targetArtist.id}`)
           .send();
 
-        expect(res.status).to.equal(200);
-
         const [[isTargetArtistInDb]] = await db.query(
           "SELECT * FROM Artist WHERE id = ?",
           [targetArtist.id]
         );
+
+        expect(res.status).to.equal(200);
 
         expect(!!isTargetArtistInDb).to.be.false;
       });

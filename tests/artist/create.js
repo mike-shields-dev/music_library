@@ -21,12 +21,12 @@ describe("create artist", () => {
           name: "Test Artist",
           genre: "Test Genre",
         });
-        expect(res.status).to.equal(201);
-
+        
         const [[artistEntries]] = await db.query(
           "SELECT * FROM Artist WHERE name = 'Test Artist'"
         );
-
+        
+        expect(res.status).to.equal(201);
         expect(artistEntries.name).to.equal("Test Artist");
         expect(artistEntries.genre).to.equal("Test Genre");
       });
