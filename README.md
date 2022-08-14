@@ -2,7 +2,7 @@
 
 This project is part of the Backend Module of the Manchester Codes Bootcamp Syllabus.
 
-The project is an opportunity to build upon topics covered in previous modules and further explore concepts of REST API production.
+The project is an opportunity to build upon topics covered in previous modules and further explore concepts of REST API development.
 
 The project explores:
 
